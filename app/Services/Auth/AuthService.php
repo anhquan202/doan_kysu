@@ -18,15 +18,23 @@ class AuthService implements IAuthService
   }
   public function loginWithInternalAccount($credentials)
   {
-    $user = InternalAccout::where('username', $credentials['username'])->firstOrFail();
+    $user = InternalAccout::where('username', $credentials['username'])->first();
+
+    if (!$user) {
+      return [
+        'status' => 404,
+        'message' => 'Tài khoản không tồn tại'
+      ];
+    }
 
     $is_correct_password = Hash::check($credentials['password'], $user->password);
-    if (!$is_correct_password || !$user) {
+    if (!$is_correct_password) {
       return [
         'status' => 401,
         'message' => 'Thông tin đăng nhập không chính xác'
       ];
     }
+
     $user_with_roles_permissions = $this->iUserService->getUserWithRolesAndPermissions($user->user_id);
     $access_token = JWTAuth::claims(['users' => $user_with_roles_permissions])->attempt($credentials);
 

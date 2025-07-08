@@ -21,4 +21,8 @@ class UserController extends Controller
             return response()->json(['error' => 'User not found', 'error_detail' => $th->getMessage()], 404);
         }
     }
+    public function test()
+    {
+        return response()->json('test', 200);
+    }
 }
