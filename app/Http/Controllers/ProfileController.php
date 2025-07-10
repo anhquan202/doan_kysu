@@ -37,7 +37,7 @@ class ProfileController extends Controller
       if ($result['status'] === 200) {
         return response()->json(['message' => $result['message']], 200);
       } else {
-        return response()->json(['error' => $result['error']], 200);
+        return response()->json(['error' => $result['error']], 400);
 
       }
     } catch (\Throwable $th) {

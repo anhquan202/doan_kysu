@@ -3,9 +3,10 @@
 namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
-use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Support\Str;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Notifications\Notifiable;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class User extends Model
 {
@@ -24,7 +25,12 @@ class User extends Model
         'gender',
         'user_status_id'
     ];
-
+    protected static function booted()
+    {
+        static::creating(function ($user) {
+            $user->user_id = (string) Str::uuid();
+        });
+    }
 
     public function userStatus()
     {
