@@ -1,0 +1,11 @@
+{
+    "editor.tabSize": 2,
+    "tailwindCSS.includeLanguages": {
+        "erb": "html",
+        "html.erb": "html",
+        "ruby": "html"
+    },
+    "editor.quickSuggestions": {
+        "strings": true
+    }
+}

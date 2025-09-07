@@ -1,0 +1,37 @@
+<%= content_for :title, t(".title")%>
+<div class="min-h-screen flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8  mx-auto bg-gray-200">
+  <div class="max-w-md w-full space-y-8 bg-white rounded-xl">
+    <h2 class="mt-6 text-center text-3xl font-extrabold text-gray-900">
+      <%= t(".title") %>
+    </h2>
+    <div class="bg-white py-4 px-6 shadow-lg rounded-lg">
+      <% if alert %>
+      <span class="my-3 text-red-400 font-bold">
+        <%= alert %>
+      </span>
+      <% end %>
+      <%= form_for(resource, as: resource_name, url: session_path(resource_name), html: { class: "space-y-6" }) do |f| %>
+      <div>
+        <%= f.label :email, t(".activemodel.email"), class: "block text-sm font-medium text-gray-700 mb-2" %>
+        <%= f.email_field :email, 
+                autofocus: true, 
+                autocomplete: "email",
+                class: "appearance-none relative block w-full px-3 py-3 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 focus:z-10 sm:text-sm transition-colors",
+                placeholder:t(".placeholder.email") %>
+      </div>
+
+      <div>
+        <%= f.label :password, t(".placeholder.password"), class: "block text-sm font-medium text-gray-700 mb-2" %>
+        <%= f.password_field :password, 
+                autocomplete: "current-password",
+                class: "appearance-none relative block w-full px-3 py-3 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 focus:z-10 sm:text-sm transition-colors",
+                placeholder:t(".placeholder.password") %>
+      </div>
+      <div>
+        <%= f.submit t(".title"), 
+                class: "group relative w-full flex justify-center py-3 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 transition-colors duration-200 cursor-pointer" %>
+      </div>
+      <% end %>
+    </div>
+  </div>
+</div>
