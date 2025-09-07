@@ -1,0 +1,12 @@
+<% content_for :title, "Editing utility" %>
+
+<h1>Editing utility</h1>
+
+<%= render "form", utility: @utility %>
+
+<br>
+
+<div>
+  <%= link_to "Show this utility", @utility %> |
+  <%= link_to "Back to utilities", utilities_path %>
+</div>

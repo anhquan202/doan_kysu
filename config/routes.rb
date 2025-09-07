@@ -1,4 +1,11 @@
 Rails.application.routes.draw do
+  resources :contracts
+  resources :utilities
+  resources :rooms
+  resources :supplies
+  resources :vehicles
+  resources :customers
+  devise_for :admins
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
   # Reveal health status on /up that returns 200 if the app boots with no exceptions, otherwise 500.
@@ -11,4 +18,5 @@ Rails.application.routes.draw do
 
   # Defines the root path route ("/")
   # root "posts#index"
+  root "rooms#index"
 end
