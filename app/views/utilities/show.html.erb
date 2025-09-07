@@ -1,0 +1,10 @@
+<p style="color: green"><%= notice %></p>
+
+<%= render @utility %>
+
+<div>
+  <%= link_to "Edit this utility", edit_utility_path(@utility) %> |
+  <%= link_to "Back to utilities", utilities_path %>
+
+  <%= button_to "Destroy this utility", @utility, method: :delete %>
+</div>

@@ -1,0 +1,32 @@
+<%= form_with(model: utility) do |form| %>
+  <% if utility.errors.any? %>
+    <div style="color: red">
+      <h2><%= pluralize(utility.errors.count, "error") %> prohibited this utility from being saved:</h2>
+
+      <ul>
+        <% utility.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div>
+    <%= form.label :type, style: "display: block" %>
+    <%= form.number_field :type %>
+  </div>
+
+  <div>
+    <%= form.label :fee, style: "display: block" %>
+    <%= form.text_field :fee %>
+  </div>
+
+  <div>
+    <%= form.label :unit, style: "display: block" %>
+    <%= form.number_field :unit %>
+  </div>
+
+  <div>
+    <%= form.submit %>
+  </div>
+<% end %>
