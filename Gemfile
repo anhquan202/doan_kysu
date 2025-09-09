@@ -67,3 +67,9 @@ gem "devise", "~> 4.9"
 gem "tailwindcss-rails"
 
 gem "faker"
+
+gem "kaminari"
+
+gem 'kaminari-tailwind', '~> 0.1.0'
+
+gem "heroicon"
