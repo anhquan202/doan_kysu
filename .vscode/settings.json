@@ -7,5 +7,12 @@
     },
     "editor.quickSuggestions": {
         "strings": true
-    }
+    },
+    "i18n-ally.localesPaths": [
+        "config/locales"
+    ],
+    "i18n-ally.enabledFrameworks": [
+        "ruby",
+        "rails"
+    ]
 }

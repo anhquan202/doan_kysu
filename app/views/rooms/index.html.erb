@@ -1,16 +1,112 @@
+<% content_for :title, t(".title") %>
+
 <p style="color: green"><%= notice %></p>
 
-<% content_for :title, "Rooms" %>
+<div class="container mx-auto px-4 py-8">
+  <div class="flex items-center justify-between mb-8">
+    <h1 class="text-3xl font-bold text-gray-900"><%=t(".title")%></h1>
+    <%= link_to t(".new"), new_room_path, class: "inline-flex items-center px-4 py-2 bg-blue-600 text-white font-medium rounded-lg hover:bg-blue-700 transition-colors duration-200" %>
+  </div>
 
-<h1>Rooms</h1>
+  <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+    <% @rooms.each do |room| %>
+    <div class="bg-white rounded-lg border border-gray-200 shadow-sm hover:shadow-lg transition-shadow duration-200">
+      <div class="p-6 pb-3">
+        <div class="flex items-center justify-between">
+          <h3 class="text-xl font-semibold flex items-center gap-2">
+            <svg class="h-5 w-5 text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 20l4-16m2 16l4-16M6 9h14M4 15h14" />
+            </svg>
+            <%= room.room_code %>
+          </h3>
+          <span class="inline-flex items-center px-2.5 py-0.5 rounded-full font-medium text-xl">
+            <%= room.room_type.capitalize %>
+          </span>
+        </div>
+      </div>
 
-<div id="rooms">
-  <% @rooms.each do |room| %>
-    <%= render room %>
-    <p>
-      <%= link_to "Show this room", room %>
-    </p>
-  <% end %>
+      <div class="px-6 pb-6 space-y-4">
+        <div class="flex items-center justify-between">
+          <div class="flex items-center gap-2 text-gray-500">
+            <%= heroicon "currency-dollar", variant: :outline, options: {class: "size-6"} %>
+            <span class="text-sm"><%= t(".info.price")%></span>
+          </div>
+          <span class="text-lg font-bold text-blue-600">
+            <%= number_to_currency(room.price, unit: "₫", separator: ".", delimiter: ",", format: "%n %u") %>
+          </span>
+        </div>
+
+        <div class="flex items-center justify-between">
+          <div class="flex items-center gap-2 text-gray-500">
+            <%= heroicon "users", variant: :outline, options: {class: "size-6"} %>
+            <span class="text-sm"><%= t(".info.max_customer")%></span>
+          </div>
+          <span class="font-medium"><%= room.max_customer %> Person</span>
+        </div>
+
+        <div class="pt-2 space-y-2">
+          <div class="flex gap-2">
+            <%= link_to t(".edit"),
+                edit_room_path(room),
+                class: "flex-1 inline-flex justify-center items-center px-3 py-2
+                        border border-blue-500 text-blue-600 bg-blue-50
+                        font-medium rounded-lg
+                        hover:bg-blue-100 hover:text-blue-700
+                        transition-colors duration-200" %>
+
+            <%= link_to t(".destroy"), 
+                room,
+                data: {
+                  turbo_method: :delete,
+                  turbo_confirm: t(".confirm_destroy")
+                },
+                class: "flex-1 inline-flex justify-center items-center px-3 py-2
+                        border border-red-500 text-red-600 bg-red-50
+                        font-medium rounded-lg
+                        hover:bg-red-100 hover:text-red-700
+                        transition-colors duration-200"
+            %>
+          </div>
+        </div>
+
+      </div>
+    </div>
+    <% end %>
+  </div>
+  <%= paginate @rooms,  theme: 'tailwind' %>
 </div>
 
-<%= link_to "New room", new_room_path %>
+<style>
+  .container {
+    max-width: 1200px;
+  }
+
+  @media (min-width: 768px) {
+    .grid {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .grid {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+  }
+
+  .grid {
+    display: grid;
+    gap: 1.5rem;
+  }
+
+  .transition-shadow {
+    transition-property: box-shadow;
+    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+    transition-duration: 200ms;
+  }
+
+  .transition-colors {
+    transition-property: color, background-color, border-color;
+    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+    transition-duration: 200ms;
+  }
+</style>

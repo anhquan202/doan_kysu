@@ -3,7 +3,7 @@ class RoomsController < ApplicationController
   before_action :authenticate_admin!
   # GET /rooms or /rooms.json
   def index
-    @rooms = Room.all
+    @rooms = Room.page(params[:page]).per(9)
   end
 
   # GET /rooms/1 or /rooms/1.json

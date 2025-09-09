@@ -38,4 +38,31 @@ en:
         activemodel:
           email: "Email"
           password: "Password"
-        
+  rooms:
+    index:
+      title: "Rooms"
+      info:
+        room_code: "Room Code"
+        room_type: "Room Type"
+        price: "Price"
+        max_customer: "Max Customer"
+      new: "New Room"
+      edit: "Edit"
+      show: "Show"
+      destroy: "Destroy"
+      confirm_destroy: "Are you sure you want to delete this room?"
+    new:
+      title: "New Room"
+      create: "Create Room"
+      back: "Back to Rooms"
+    form:
+      room_code: "Room Code"
+      room_type: "Room Type"
+      price: "Price"
+      max_customer: "Max Customer"
+      placeholder:
+        room_code: "e.g., A101, B205"
+        room_type: "Select Room Type"
+        price: "e.g., 100.00"
+        max_customer: "e.g., 2"
+
