@@ -1,0 +1,52 @@
+<header class="bg-white shadow-sm border-b border-gray-200">
+  <div class="flex justify-between items-center px-5 h-16">
+    <button data-action="click->sidebar#toggle" class="block p-4 text-xl cursor-pointer">
+      <%= image_tag "icons/bars.svg" %>
+    </button>
+
+    <div class="flex justify-between items-center h-16">
+      <div class="relative">
+        <button id="user-menu-button" class="flex items-center p-4 rounded-full hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2" onclick="toggleDropdown()">
+          <div class="w-8 h-8 bg-gray-600 rounded-full flex items-center justify-center">
+            <span class="text-white font-medium text-sm">
+              <%= current_admin.email.first.upcase %>
+            </span>
+          </div>
+        </button>
+
+        <div id="dropdown-menu" class="hidden absolute right-0 mt-2 w-64 bg-white rounded-lg shadow-lg border border-gray-200 py-2 z-50">
+          <div class="px-4 py-3 border-b border-gray-100">
+            <p class="text-sm text-gray-500"><%= t(".signed_in_as")%></p>
+            <p class="text-sm font-medium text-gray-900 truncate">
+              <%= current_admin.email %>
+            </p>
+          </div>
+
+          <div class="py-1">
+            <%= link_to destroy_admin_session_path, 
+                method: :delete, 
+                class: "flex items-center px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 transition-colors duration-200" do %>
+            <%= t(".sign_out")%>
+            <% end %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<script>
+  function toggleDropdown() {
+    const dropdown = document.getElementById('dropdown-menu');
+    dropdown.classList.toggle('hidden');
+  }
+
+  document.addEventListener('click', function(event) {
+    const button = document.getElementById('user-menu-button');
+    const dropdown = document.getElementById('dropdown-menu');
+
+    if (!button.contains(event.target) && !dropdown.contains(event.target)) {
+      dropdown.classList.add('hidden');
+    }
+  });
+</script>

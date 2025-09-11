@@ -1,0 +1,35 @@
+<div class="w-64 xl:block min-h-screen p-4 border-r-1 border-gray-200" data-sidebar-target="sidebar">
+  <div class="flex-shrink-0">
+    <a href="/" class="flex items-center gap-4">
+      <%= image_tag "logo.png", class: "size-12 object-cover" %>
+      Admin
+    </a>
+  </div>
+
+  <nav class="space-y-2">
+    <a href="/rooms" class="flex items-center gap-4 px-4 py-3 hover:bg-gray-800 hover:text-white rounded-lg transition-colors duration-200">
+      <%= image_tag "icons/building.svg" %>
+      Rooms
+    </a>
+
+    <a href="/customers" class="flex items-center px-4 py-3 gap-4 hover:bg-gray-800 hover:text-white rounded-lg transition-colors duration-200">
+      <%= image_tag "icons/users.svg" %>
+      Customer
+    </a>
+  </nav>
+</div>
+
+<script>
+  function toggleSubmenu(menuName) {
+    const submenu = document.getElementById(menuName + '-submenu');
+    const arrow = document.getElementById(menuName + '-arrow');
+
+    if (submenu.classList.contains('hidden')) {
+      submenu.classList.remove('hidden');
+      arrow.style.transform = 'rotate(90deg)';
+    } else {
+      submenu.classList.add('hidden');
+      arrow.style.transform = 'rotate(0deg)';
+    }
+  }
+</script>
