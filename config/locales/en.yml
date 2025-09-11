@@ -28,6 +28,16 @@
 #       enabled: "ON"
 
 en:
+  layouts:
+    partials:
+      admin:
+        header: 
+          signed_in_as: "Signed in as"
+          sign_out: "Sign out"
+        sidebar:
+          dashboard: "Dashboard"
+          rooms: "Rooms"
+          customers: "Customers"
   devise:
     sessions:
       new:

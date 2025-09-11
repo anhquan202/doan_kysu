@@ -28,7 +28,11 @@
       <div class="px-6 pb-6 space-y-4">
         <div class="flex items-center justify-between">
           <div class="flex items-center gap-2 text-gray-500">
+            <%
+=begin%>
             <%= heroicon "currency-dollar", variant: :outline, options: {class: "size-6"} %>
+            <%
+=end%>
             <span class="text-sm"><%= t(".info.price")%></span>
           </div>
           <span class="text-lg font-bold text-blue-600">
@@ -38,7 +42,11 @@
 
         <div class="flex items-center justify-between">
           <div class="flex items-center gap-2 text-gray-500">
+            <%
+=begin%>
             <%= heroicon "users", variant: :outline, options: {class: "size-6"} %>
+            <%
+=end%>
             <span class="text-sm"><%= t(".info.max_customer")%></span>
           </div>
           <span class="font-medium"><%= room.max_customer %> Person</span>
