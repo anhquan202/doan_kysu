@@ -1,16 +1,54 @@
-<p style="color: green"><%= notice %></p>
-
-<% content_for :title, "Customers" %>
-
-<h1>Customers</h1>
-
-<div id="customers">
-  <% @customers.each do |customer| %>
-    <%= render customer %>
-    <p>
-      <%= link_to "Show this customer", customer %>
-    </p>
-  <% end %>
+<div class="flex flex-col w-full pt-8">
+  <p class="text-green-600"><%= notice %></p>
+  <% content_for :title, t(".title") %>
+  <div class="flex items-center justify-between mb-4">
+    <h1 class="text-2xl font-bold">Customers</h1>
+    <div class="">
+      <%= link_to "New customer", new_customer_path, class: "px-4 py-2 bg-blue-600 text-white rounded-lg shadow hover:bg-blue-700" %>
+    </div>
+  </div>
+  <div class="overflow-x-auto bg-white shadow rounded-lg">
+    <table class="min-w-full divide-y divide-gray-200">
+      <thead class="bg-gray-100">
+        <tr>
+          <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">ID</th>
+          <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase"><%= %></th>
+          <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase"><%=%></th>
+          <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase"><%= %></th>
+          <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Gender</th>
+          <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Status</th>
+          <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Actions</th>
+        </tr>
+      </thead>
+      <tbody class="divide-y divide-gray-200">
+        <% @customers.each do |customer| %>
+          <tr>
+            <td class="px-6 py-4 whitespace-nowrap"><%= customer.id %></td>
+            <td class="px-6 py-4 whitespace-nowrap font-mono"><%= customer.identity_code %></td>
+            <td class="px-6 py-4 whitespace-nowrap"><%= customer.full_name %></td>
+            <td class="px-6 py-4 whitespace-nowrap"><%= customer.phone_number %></td>
+            <td class="px-6 py-4 whitespace-nowrap"><%= customer.gender.humanize %></td>
+            <td class="px-6 py-4 whitespace-nowrap">
+              <% if customer.active? %>
+                <span class="px-2 inline-flex text-xs font-semibold rounded-full bg-green-100 text-green-800">
+                  Active
+                </span>
+              <% else %>
+                <span class="px-2 inline-flex text-xs font-semibold rounded-full bg-red-100 text-red-800">
+                  Inactive
+                </span>
+              <% end %>
+            </td>
+            <td class="px-6 py-4 whitespace-nowrap text-right">
+              <%= link_to "Edit", edit_customer_path(customer), class: "text-yellow-600 hover:text-yellow-900 mr-2" %>
+              <%= link_to "Delete", customer, method: :delete, data: { confirm: "Are you sure?" }, class: "text-red-600 hover:text-red-900" %>
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+  <div class="mt-4">
+    <%= paginate @customers, theme: 'tailwind' %>
+  </div>
 </div>
-
-<%= link_to "New customer", new_customer_path %>

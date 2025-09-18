@@ -3,7 +3,6 @@
     "tailwindCSS.includeLanguages": {
         "erb": "html",
         "html.erb": "html",
-        "ruby": "html"
     },
     "editor.quickSuggestions": {
         "strings": true
@@ -14,5 +13,11 @@
     "i18n-ally.enabledFrameworks": [
         "ruby",
         "rails"
-    ]
+    ],
+    "files.associations": {
+        "*.html.erb": "erb"
+    },
+    "emmet.includeLanguages": {
+        "erb": "html"
+    },
 }
