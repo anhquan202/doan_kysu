@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_09_07_151525) do
+ActiveRecord::Schema[8.0].define(version: 2025_09_17_155446) do
   create_table "admins", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
@@ -26,7 +26,7 @@ ActiveRecord::Schema[8.0].define(version: 2025_09_07_151525) do
   create_table "contract_customers", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.bigint "contract_id", null: false
     t.bigint "customer_id", null: false
-    t.boolean "is_represent"
+    t.boolean "is_represent", default: false, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["contract_id"], name: "index_contract_customers_on_contract_id"
@@ -45,13 +45,11 @@ ActiveRecord::Schema[8.0].define(version: 2025_09_07_151525) do
   create_table "contracts", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "contract_code"
     t.bigint "room_id", null: false
-    t.bigint "customer_id", null: false
     t.decimal "deposit", precision: 10
     t.datetime "start_date"
     t.datetime "end_date"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["customer_id"], name: "index_contracts_on_customer_id"
     t.index ["room_id"], name: "index_contracts_on_room_id"
   end
 
@@ -66,6 +64,7 @@ ActiveRecord::Schema[8.0].define(version: 2025_09_07_151525) do
     t.integer "status"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "identity_code"
   end
 
   create_table "room_supplies", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
@@ -116,7 +115,6 @@ ActiveRecord::Schema[8.0].define(version: 2025_09_07_151525) do
   add_foreign_key "contract_customers", "customers"
   add_foreign_key "contract_utilities", "contracts"
   add_foreign_key "contract_utilities", "utilities"
-  add_foreign_key "contracts", "customers"
   add_foreign_key "contracts", "rooms"
   add_foreign_key "room_supplies", "rooms"
   add_foreign_key "room_supplies", "supplies"
